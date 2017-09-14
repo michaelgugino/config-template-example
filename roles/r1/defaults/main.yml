@@ -1,0 +1,17 @@
+---
+
+r1_template_path: "t.j2"
+
+x1_var: 33
+
+t_overrides:
+  x3: "this is a new overriding value"
+  d1:
+    - "item1"
+    - item2:
+      a: 1
+      b: 2
+  d2: "d2 is a string"
+  d3:
+    a: 3
+    b: 4

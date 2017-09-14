@@ -1,0 +1,7 @@
+---
+
+- config_template:
+    src: "{{ r1_template_path }}"
+    dest: "/tmp/output.yml"
+    config_overrides: "{{ t_overrides | default({}) }}"
+    config_type: "yaml"
