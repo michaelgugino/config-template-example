@@ -1,3 +1,8 @@
 - hosts: all
+  pre_tasks:
+    - debug: msg="{{ asdf }}"
   roles:
     - role: r1
+      when: asdf | bool
+  post_tasks:
+    - debug: msg="{{ asdf }} asdf"

@@ -1,5 +1,5 @@
 ---
-
+# - include: x.yml
 - config_template:
     src: "{{ r1_template_path }}"
     dest: "/tmp/output.yml"
