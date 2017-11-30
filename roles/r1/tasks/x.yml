@@ -1,2 +1,10 @@
 ---
 - debug: msg="{{ asdf }} x.yml"
+
+
+- name: run the new module
+  docker_creds:
+    path: '/tmp/dockerx'
+    registry: "registry.example.com:443"
+    username: 'x'
+    password: '2'

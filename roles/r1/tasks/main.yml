@@ -1,7 +1,29 @@
 ---
-# - include: x.yml
+- include: x.yml
 - config_template:
     src: "{{ r1_template_path }}"
     dest: "/tmp/output.yml"
     config_overrides: "{{ t_overrides | default({}) }}"
     config_type: "yaml"
+- generate_pv_dict: {}
+  vars:
+    x_yes_1: 3
+    openshift_hosted_registry_storage_volume_name: 'registry'
+    openshift_hosted_registry_storage_volume_size: '5Gi'
+    openshift_hosted_registry_storage_create_pv: True
+    openshift_hosted_registry_storage_create_pvc: True
+    openshift_hosted_registry_storage_kind: 'glusterfs'
+    openshift_hosted_registry_storage_nfs_directory: '/exports'
+    openshift_hosted_registry_storage_nfs_options: '*(rw,root_squash)'
+    openshift_hosted_registry_storage_glusterfs_endpoints: 'glusterfs-registry-endpoints'
+    openshift_hosted_registry_storage_glusterfs_path: glusterfs-registry-volume
+    openshift_hosted_registry_storage_glusterfs_readOnly: False
+    openshift_hosted_registry_storage_glusterfs_swap: False
+    openshift_hosted_registry_storage_glusterfs_swapcopy: True
+    openshift_hosted_registry_storage_glusterfs_ips: []
+    openshift_hosted_registry_storage_access_modes:
+      - 'ReadWriteMany'
+  register: pv_results
+
+- debug: msg="pvs = {{ pv_results.persistent_volumes }}"
+- debug: msg="pvcs = {{ pv_results.persistent_volume_claims }}"
